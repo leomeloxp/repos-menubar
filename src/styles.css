@@ -1,34 +1,74 @@
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf') tech('variations'),
+    url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf-variations');
+	font-weight: 100 1000;
+	font-stretch: 25% 151%;
+}
+@font-face {
+	font-family: 'Inconsolata';
+	src: url('./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf') format('ttf') tech('variations'),
+    url('./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf') format('ttf-variations');
+	font-weight: 100 1000;
+	font-stretch: 25% 151%;
+}
+
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
+  --colour-true-blue: #086fd6;
+  --colour-picton-blue: #479ff5;
+  --colour-black: #111111;
+  --colour-white: #ffffff;
+  --colour-alabaster: #fbfbfb;
+  --colour-concrete: #f3f3f3;
+  --colour-armadillo: #4a4a4a;
+  --colour-pastel-green: #5fe878;
+  --colour-turbo: #fad022;
+  --colour-razzmatazz: #dc2671;
+  --colour-grey-light: #fbfbfb;
+  --colour-grey-medium: #f3f3f3;
+  --colour-grey-dark: #4a4a4a;
+  --colour-primary: var(--colour-true-blue);
+  --colour-secondary: var(--colour-picton-blue);
+  --colour-success: var(--colour-pastel-green);
+  --colour-warning: var(--colour-turbo);
+  --colour-alert: var(--colour-razzmatazz);
+  --colour-body-text: var(--colour-black);
+  --font-sans: "Montserrat", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  --font-mono: "Dank Mono", "Operator Mono", "Inconsolata", "Courier", monospace;
+  --font-family-sans: 'Montserrat', sans-serif;
+  --font-family-mono: 'Inconsolata', monospace;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  font-family: var(--font-family-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+
+  color: var(--colour-body-text);
+  background-color: var(--colour-alabaster);
+
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f6f6f6;
+    background-color: #2f2f2f;
+  }
 }
 
-a:hover {
-  color: #535bf2;
-}
 
 h1 {
   text-align: center;
 }
 
-input,
+input[type='button'],
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -36,8 +76,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
+  color: var(--colour-white);
+  background-color: var(--colour-primary);
   transition: border-color 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
@@ -47,35 +87,9 @@ button {
 }
 
 button:hover {
-  border-color: #396cd8;
+  border-color: var(--colour-primary);
 }
 button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
-input,
-button {
-  outline: none;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
-
-  a:hover {
-    color: #24c8db;
-  }
-
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
+  border-color: var(--colour-secondary);
+  background-color: var(--colour-primary);
 }
