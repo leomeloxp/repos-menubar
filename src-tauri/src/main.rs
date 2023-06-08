@@ -80,13 +80,6 @@ fn list_repos(repo_path: &str) -> Vec<RepoInfo> {
                     };
                     result.push(repo_info);
                 }
-            } else {
-                let repo_info = RepoInfo {
-                    full_path: String::from(full_path_str),
-                    path: String::from(path_str),
-                    branch_name: String::from("Not a git repository"),
-                };
-                result.push(repo_info);
             }
         }
     }
