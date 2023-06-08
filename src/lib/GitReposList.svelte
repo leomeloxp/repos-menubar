@@ -1,16 +1,16 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/tauri";
   import { open } from "@tauri-apps/api/shell";
+  import { repos, type Repo } from "./stores/repos";
   import { repoPath } from "./stores/repoPath";
   import { onMount } from "svelte";
 
-  let repos: { path: string; full_path: string; branch_name: string }[] = [];
-
   async function listRepos() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    repos = await invoke("list_repos", {
+    const listedRepos: Repo[] = (await invoke("list_repos", {
       repoPath: $repoPath,
-    });
+    })) as Repo[];
+    repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
   }
 
   onMount(() => {
@@ -25,7 +25,7 @@
   </label>
   <button type="button" on:click={listRepos}>List Repos</button>
   <div class="repo-list">
-    {#each repos as repo}
+    {#each $repos as repo}
       <pre class="repo"><strong>{repo.path}</strong>: {repo.branch_name}</pre>
       <button
         on:click={() => {
