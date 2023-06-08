@@ -1,8 +1,13 @@
 <script lang="ts">
-  import GitReposList from "./lib/GitReposList.svelte";
+  import { route } from "./lib/stores/route";
+  import MainView from "./views/MainView.svelte";
+  import SettingsView from "./views/SettingsView.svelte";
 </script>
 
 <main class="container">
-  <h1>Repos Menubar</h1>
-  <GitReposList />
+  {#if $route === "settings"}
+    <SettingsView />
+  {:else}
+    <MainView />
+  {/if}
 </main>
