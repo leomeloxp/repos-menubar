@@ -39,8 +39,6 @@
     padding: 0 0.5rem;
   }
   .actions button {
-    border: none;
-    background: none;
     cursor: pointer;
     margin: 0px;
     padding: 0.5rem 1rem;

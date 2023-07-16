@@ -11,3 +11,13 @@
     <MainView />
   {/if}
 </main>
+
+<style>
+  .container {
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+  }
+</style>
