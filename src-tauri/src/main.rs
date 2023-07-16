@@ -36,7 +36,7 @@ fn list_repos(repo_path: &str) -> Vec<RepoInfo> {
         Ok(dirs) => dirs,
         Err(e) => {
             println!("Failed to read directory: {}", e);
-            panic!("Failed to read directory.")
+            return Vec::new();
         }
     };
 
