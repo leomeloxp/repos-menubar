@@ -14,8 +14,16 @@
     repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
   }
 
+  function change() {
+    if (document.visibilityState === "visible") {
+      listRepos();
+    }
+  }
+
   onMount(() => {
     listRepos();
+    document.addEventListener("visibilitychange", change);
+    return () => document.removeEventListener("visibilitychange", change);
   });
 </script>
 
