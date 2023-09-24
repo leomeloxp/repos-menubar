@@ -3,9 +3,31 @@
   import { repos, type Repo } from "../lib/stores/repos";
   import { repoPath } from "../lib/stores/repoPath";
   import { onMount } from "svelte";
+  import { open } from "@tauri-apps/api/dialog";
+  import { homeDir } from "@tauri-apps/api/path";
 
   async function listRepos() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+    const listedRepos: Repo[] = (await invoke("list_repos", {
+      repoPath: $repoPath,
+    })) as Repo[];
+    repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
+  }
+
+  async function pickDir() {
+    // Open a selection dialog for directories
+    const selected = await open({
+      directory: true,
+    });
+    const homeDirPath = await homeDir();
+
+    // Multiple is not currently possible but we have it here for TS and future proofing purposes
+    if (Array.isArray(selected) || selected == null) {
+      return;
+    }
+
+    const homeReplacedPath = selected.replace(homeDirPath, "~/");
+    repoPath.set(homeReplacedPath);
     const listedRepos: Repo[] = (await invoke("list_repos", {
       repoPath: $repoPath,
     })) as Repo[];
@@ -22,7 +44,7 @@
     ><span> Repositories Path </span>
     <input type="text" name="repoPath" id="repoPath" bind:value={$repoPath} />
   </label>
-  <button on:click={listRepos}>List Repos</button>
+  <button on:click={pickDir}>Pick Directory</button>
 </div>
 
 <style>
