@@ -41,8 +41,14 @@
 
 <div class="path-picker">
   <label for="repoPath"
-    ><span> Repositories Path </span>
-    <input type="text" name="repoPath" id="repoPath" bind:value={$repoPath} />
+    ><span> Path </span>
+    <input
+      type="text"
+      name="repoPath"
+      id="repoPath"
+      disabled
+      bind:value={$repoPath}
+    />
   </label>
   <button on:click={pickDir}>Pick Directory</button>
 </div>
