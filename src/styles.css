@@ -1,19 +1,19 @@
-
 @font-face {
-	font-family: 'Montserrat';
-	src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf') tech('variations'),
-    url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('ttf-variations');
-	font-weight: 100 1000;
-	font-stretch: 25% 151%;
+  font-family: "Montserrat";
+  src:
+    url("./fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("ttf") tech("variations"),
+    url("./fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("ttf-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
 }
 @font-face {
-	font-family: 'Inconsolata';
-	src: url('./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf') format('ttf') tech('variations'),
-    url('./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf') format('ttf-variations');
-	font-weight: 100 1000;
-	font-stretch: 25% 151%;
+  font-family: "Inconsolata";
+  src:
+    url("./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf") format("ttf") tech("variations"),
+    url("./fonts/Inconsolata/Inconsolata-VariableFont_wght.ttf") format("ttf-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
 }
-
 
 :root {
   --colour-true-blue: #086fd6;
@@ -37,8 +37,8 @@
   --colour-body-text: var(--colour-black);
   --font-sans: "Montserrat", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   --font-mono: "Dank Mono", "Operator Mono", "Inconsolata", "Courier", monospace;
-  --font-family-sans: 'Montserrat', sans-serif;
-  --font-family-mono: 'Inconsolata', monospace;
+  --font-family-sans: "Montserrat", sans-serif;
+  --font-family-mono: "Inconsolata", monospace;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -52,7 +52,6 @@
 
   color: var(--colour-body-text);
   background-color: var(--colour-alabaster);
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,7 +61,7 @@
   }
 }
 
-input[type='button'],
+input[type="button"],
 button {
   border-radius: 8px;
   border: 1px solid transparent;
