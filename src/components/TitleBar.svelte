@@ -1,12 +1,17 @@
 <script lang="ts">
-  import { goToSettingsView } from "../lib/stores/route";
   export let title: string;
+  import { appWindow } from "@tauri-apps/api/window";
+
+  async function closeWindow() {
+    await appWindow.hide();
+  }
 </script>
 
 <div>
   <h1>{title}</h1>
   <div class="action">
     <slot />
+    <button on:click={closeWindow}>X</button>
   </div>
 </div>
 

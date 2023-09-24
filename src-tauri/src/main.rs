@@ -13,7 +13,6 @@ fn main() {
         .invoke_handler(tauri::generate_handler![list_repos])
         .system_tray(SystemTray::new().with_menu(system_tray_menu))
         .on_system_tray_event(system_tray_event_handler)
-        .on_window_event(window_event_handler)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

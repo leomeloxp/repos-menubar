@@ -27,12 +27,3 @@ pub fn system_tray_event_handler(app: &AppHandle<Wry>, event: SystemTrayEvent) {
         _ => {}
     }
 }
-
-pub fn window_event_handler(event: GlobalWindowEvent) {
-    if let tauri::WindowEvent::Focused(is_focused) = event.event() {
-        // detect click outside of the focused window and hide the app
-        if !is_focused {
-            let _ = event.window().hide();
-        }
-    }
-}
