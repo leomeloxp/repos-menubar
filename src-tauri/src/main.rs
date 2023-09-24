@@ -10,6 +10,7 @@ fn main() {
             Ok(())
         })
         .plugin(tauri_plugin_positioner::init())
+        .plugin(tauri_plugin_store::Builder::default().build())
         .invoke_handler(tauri::generate_handler![list_repos])
         .system_tray(SystemTray::new().with_menu(system_tray_menu))
         .on_system_tray_event(system_tray_event_handler)
