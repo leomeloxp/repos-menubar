@@ -1,9 +1,17 @@
+#![warn(clippy::pedantic)]
+#![warn(clippy::nursery)]
+#![warn(clippy::unwrap_used)]
+#![warn(clippy::expect_used)]
+
+#[allow(clippy::wildcard_imports)]
 use repos_menubar::{commands::*, events::*};
 use tauri::{CustomMenuItem, SystemTray, SystemTrayMenu};
 
 fn main() {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit").accelerator("Cmd+Q");
     let system_tray_menu = SystemTrayMenu::new().add_item(quit);
+
+    #[allow(clippy::expect_used)]
     tauri::Builder::default()
         .setup(|app| {
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);

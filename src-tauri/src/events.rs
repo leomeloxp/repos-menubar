@@ -1,6 +1,10 @@
-use tauri::{AppHandle, GlobalWindowEvent, Manager, SystemTrayEvent, Wry};
+use tauri::{AppHandle, Manager, SystemTrayEvent, Wry};
 use tauri_plugin_positioner::{Position, WindowExt};
 
+#[allow(clippy::unwrap_used)]
+/// # Panics
+///
+/// Will panic if any window operation fails.
 pub fn system_tray_event_handler(app: &AppHandle<Wry>, event: SystemTrayEvent) {
     tauri_plugin_positioner::on_tray_event(app, &event);
     match event {

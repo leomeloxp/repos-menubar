@@ -7,6 +7,7 @@ use std::fs;
 const IGNORED_FILES: [&str; 1] = [".DS_Store"];
 
 #[tauri::command]
+#[must_use]
 pub fn list_repos(repo_path: &str) -> Vec<RepoInfo> {
     let mut result = Vec::new();
 
@@ -16,7 +17,7 @@ pub fn list_repos(repo_path: &str) -> Vec<RepoInfo> {
     let dirs = match fs::read_dir(&expanded_path) {
         Ok(dirs) => dirs,
         Err(e) => {
-            println!("Failed to read directory: {}", e);
+            println!("Failed to read directory: {e}");
             return Vec::new();
         }
     };
@@ -38,7 +39,7 @@ pub fn list_repos(repo_path: &str) -> Vec<RepoInfo> {
         let full_path_str = path.to_string_lossy();
 
         if let Ok(repo) = Repository::open(dir.path()) {
-            result.push(RepoInfo::new(repo, &path_str, &full_path_str));
+            result.push(RepoInfo::new(&repo, &path_str, &full_path_str));
         }
     }
 
