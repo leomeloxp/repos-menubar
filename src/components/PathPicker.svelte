@@ -4,14 +4,11 @@
   import { repoPath } from "../lib/stores/repoPath";
   import { onMount } from "svelte";
   import { open } from "@tauri-apps/api/dialog";
-  import { homeDir } from "@tauri-apps/api/path";
 
   async function listRepos() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    const listedRepos: Repo[] = (await invoke("list_repos", {
-      repoPath: $repoPath,
-    })) as Repo[];
-    repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
+    const listedRepos: Repo[] = (await invoke("list_repos")) as Repo[];
+    repos.set(listedRepos.sort((a, b) => a.name.localeCompare(b.name)));
   }
 
   async function pickDir() {
@@ -19,19 +16,21 @@
     const selected = await open({
       directory: true,
     });
-    const homeDirPath = await homeDir();
 
     // Multiple is not currently possible but we have it here for TS and future proofing purposes
     if (Array.isArray(selected) || selected == null) {
       return;
     }
 
-    const homeReplacedPath = selected.replace(homeDirPath, "~/");
-    repoPath.set(homeReplacedPath);
-    const listedRepos: Repo[] = (await invoke("list_repos", {
-      repoPath: $repoPath,
-    })) as Repo[];
-    repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
+    const result: true | string = await invoke("add_new_repo", {
+      repoPath: selected,
+    });
+
+    if (result !== true) {
+      console.error(result);
+      return;
+    }
+    await listRepos();
   }
 
   onMount(() => {
@@ -44,7 +43,7 @@
     ><span> Path </span>
     <input type="text" name="repoPath" id="repoPath" disabled bind:value={$repoPath} />
   </label>
-  <button on:click={pickDir}>Pick Directory</button>
+  <button on:click={pickDir}>add new repo</button>
 </div>
 
 <style>

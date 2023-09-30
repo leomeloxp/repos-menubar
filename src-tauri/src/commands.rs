@@ -5,6 +5,23 @@ use git2::Repository;
 use sqlx::Row;
 use std::path::Path;
 
+/// # Errors
+///
+/// Will return `Err` if it fails to add the repo to the database.
+#[tauri::command]
+pub async fn add_new_repo(repo_path: String) -> Result<bool, String> {
+    let db = establish_db_connection().await;
+
+    match sqlx::query("INSERT INTO repos (path) VALUES ($1) ON CONFLICT DO NOTHING")
+        .bind(repo_path)
+        .execute(&db)
+        .await
+    {
+        Ok(_) => Ok(true),
+        Err(e) => Err(format!("Error adding repo to database: {e}")),
+    }
+}
+
 #[must_use]
 #[tauri::command]
 pub async fn list_repos() -> Vec<RepoInfo> {
