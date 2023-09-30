@@ -11,7 +11,7 @@
     const listedRepos: Repo[] = (await invoke("list_repos", {
       repoPath: $repoPath,
     })) as Repo[];
-    repos.set(listedRepos.sort((a, b) => a.path.localeCompare(b.path)));
+    repos.set(listedRepos.sort((a, b) => a.name.localeCompare(b.name)));
   }
 
   function change() {

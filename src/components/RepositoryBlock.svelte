@@ -7,14 +7,14 @@
 
 <div class="repository-block">
   <div class="info">
-    <pre><strong>{repo.path}</strong>: {repo.branch_name}</pre>
+    <pre><strong>{repo.name}</strong>: {repo.branch_name}</pre>
   </div>
   <div class="actions">
     <button
       on:click={() => {
         open(`${$settings.editor}://file/${repo.full_path}/`);
       }}
-      title={`Open "${repo.path}"`}
+      title={`Open "${repo.name}"`}
     >
       open
     </button>
